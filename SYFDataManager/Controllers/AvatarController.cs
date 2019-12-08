@@ -22,9 +22,9 @@ namespace SYFDataManager.Controllers
             avatarModel.FolderName = "FOLDER NAME";
             avatarModel.ShortDescription = "short Desc";
             avatarModel.PublishDate = 12345;
-            avatarModel.imagesUrl = new string[1] { "/assets/temp/1.jpg" };
-            avatarModel.tags = new string[1] { "tagi" };
-            avatarModel.sharePoint = 333;
+            avatarModel.ImagesUrl = new string[1] { "/assets/temp/1.jpg" };
+            avatarModel.Tags = new string[1] { "tagi" };
+            avatarModel.SharePoint = 333;
 
             pNewProducts.Add(avatarModel);
             avatarModel.ShortDescription = "";

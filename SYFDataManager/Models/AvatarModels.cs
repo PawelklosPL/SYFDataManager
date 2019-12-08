@@ -20,11 +20,11 @@ namespace SYFDataManager.Models
         public string ShortDescription { get; set; }
         [JsonProperty("PublishDate")]
         public int PublishDate { get; set; }
-        [JsonProperty("imagesUrl")]
-        public string[] imagesUrl { get; set; }
-        [JsonProperty("tags")]
-        public string[] tags { get; set; }
-        [JsonProperty("sharePoint")]
-        public int sharePoint { get; set; }
+        [JsonProperty("ImagesUrl")]
+        public string[] ImagesUrl { get; set; }
+        [JsonProperty("Tags")]
+        public string[] Tags { get; set; }
+        [JsonProperty("SharePoint")]
+        public int SharePoint { get; set; }
     }
 }
