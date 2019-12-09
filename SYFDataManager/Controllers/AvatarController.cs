@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Calculation.Avatar;
 
 namespace SYFDataManager.Controllers
 {
@@ -14,23 +15,9 @@ namespace SYFDataManager.Controllers
         // GET: Avatar
         public ActionResult Index()
         {
-            List<AvatarModel> pNewProducts = new List<AvatarModel>();
-            AvatarModel avatarModel = new AvatarModel();
-            avatarModel.Id = 1;
-            avatarModel.AuthorName = "Name";
-            avatarModel.AuthorId = "1";
-            avatarModel.FolderName = "FOLDER NAME";
-            avatarModel.ShortDescription = "short Desc";
-            avatarModel.PublishDate = 12345;
-            avatarModel.ImagesUrl = new string[1] { "/assets/temp/1.jpg" };
-            avatarModel.Tags = new string[1] { "tagi" };
-            avatarModel.SharePoint = 333;
+            AvatarPreparationDTO avatars = new AvatarPreparationDTO();
 
-            pNewProducts.Add(avatarModel);
-            avatarModel.ShortDescription = "";
-            pNewProducts.Add(avatarModel);
-
-            return Content(JsonConvert.SerializeObject(pNewProducts));
+            return Content(JsonConvert.SerializeObject(avatars.getAvatarsList()));
         }
 
         // GET: Avatar/Details/5
