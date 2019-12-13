@@ -6,22 +6,15 @@ namespace Calculation.Avatar
 {
     public class AvatarPreparationDTO
     {
-        public List<AvatarModel> getAvatarsList()
+        public List<AvatarModel> getAvatarsList(int avatarNumber)
         {
+
             List<AvatarModel> avatars = new List<AvatarModel>();
-            avatars.Add(dummyAvatar());
-            avatars.Add(dummyAvatar());
-            avatars.Add(dummyAvatar());
-            avatars.Add(dummyAvatar());
-            avatars.Add(dummyAvatar());
-            avatars.Add(dummyAvatar());
-            avatars.Add(dummyAvatar());
-            avatars.Add(dummyAvatar());
-            avatars.Add(dummyAvatar());
-            avatars.Add(dummyAvatar());
-            avatars.Add(dummyAvatar());
-            avatars.Add(dummyAvatar());
-            avatars.Add(dummyAvatar());
+
+            for(int i = 0; i < avatarNumber; i++)
+            {
+                avatars.Add(dummyAvatar());
+            }
             return avatars;
         }
         private AvatarModel dummyAvatar()

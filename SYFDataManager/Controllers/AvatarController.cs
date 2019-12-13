@@ -17,7 +17,7 @@ namespace SYFDataManager.Controllers
         {
             AvatarPreparationDTO avatars = new AvatarPreparationDTO();
 
-            return Content(JsonConvert.SerializeObject(avatars.getAvatarsList()));
+            return Content(JsonConvert.SerializeObject(avatars.getAvatarsList(10)));
         }
 
         // GET: Avatar/Details/5

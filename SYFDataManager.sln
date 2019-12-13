@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SYFDataManager", "SYFDataManager\SYFDataManager.csproj", "{00D9A69F-6F5B-4B18-93C5-1A3D18824FB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculation", "calculation\Calculation.csproj", "{89D7F1B2-211B-41BD-8590-5238CE70949A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculation", "calculation\Calculation.csproj", "{89D7F1B2-211B-41BD-8590-5238CE70949A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBConnection", "DBConnection\DBConnection.csproj", "{1DFA24F4-2322-4ED6-ABC3-14D454EDC4AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{89D7F1B2-211B-41BD-8590-5238CE70949A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89D7F1B2-211B-41BD-8590-5238CE70949A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89D7F1B2-211B-41BD-8590-5238CE70949A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DFA24F4-2322-4ED6-ABC3-14D454EDC4AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DFA24F4-2322-4ED6-ABC3-14D454EDC4AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DFA24F4-2322-4ED6-ABC3-14D454EDC4AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DFA24F4-2322-4ED6-ABC3-14D454EDC4AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

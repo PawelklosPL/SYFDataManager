@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="96a0beaf87e240239d881b1933549968" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="SyfModel.Avatar" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SyfModel.Avatar_To_ImageUrl" Width="1.5" PointX="4.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SyfModel.Avatar_To_Tag" Width="1.5" PointX="4.125" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SyfModel.ImageUrl" Width="1.5" PointX="7.375" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SyfModel.Tag" Width="1.5" PointX="6.875" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SyfModel.C__MigrationHistory" Width="2.25" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="SyfModel.AspNetRole" Width="2.25" PointX="0.75" PointY="8.5" />
+        <EntityTypeShape EntityType="SyfModel.AspNetUserClaim" Width="2.25" PointX="7.625" PointY="6.625" />
+        <EntityTypeShape EntityType="SyfModel.AspNetUserLogin" Width="2.25" PointX="5.25" PointY="9.75" />
+        <EntityTypeShape EntityType="SyfModel.AspNetUser" Width="2.25" PointX="3" PointY="7.375" />
+        <AssociationConnector Association="SyfModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="SyfModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="SyfModel.AspNetUserRoles" />
+        <AssociationConnector Association="SyfModel.FK__Avatar_To__Avata__47DBAE45" />
+        <AssociationConnector Association="SyfModel.FK__Avatar_To__Tag_I__48CFD27E" />
+        <AssociationConnector Association="SyfModel.FK__Avatar_To__Avata__5AEE82B9" />
+        <AssociationConnector Association="SyfModel.FK__Avatar_To__Image__5BE2A6F2" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
