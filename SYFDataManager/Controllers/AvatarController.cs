@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using Calculation.Avatar;
+using Calculations.Avatars;
+using Newtonsoft.Json;
 using SYFDataManager.Models;
 using System;
 using System.Collections.Generic;
@@ -6,7 +8,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Calculation.Avatar;
 
 namespace SYFDataManager.Controllers
 {
@@ -29,6 +30,7 @@ namespace SYFDataManager.Controllers
         // GET: Avatar/Create
         public ActionResult Create()
         {
+
             return View();
         }
 
@@ -38,7 +40,10 @@ namespace SYFDataManager.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
+                AvatarPreparationDTO avatars = new AvatarPreparationDTO();
+
+                AvatarModel avatar = new AvatarModel();
+                avatars.createAvatar(avatar);
 
                 return RedirectToAction("Index");
             }
