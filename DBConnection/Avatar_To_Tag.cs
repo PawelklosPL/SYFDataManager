@@ -17,5 +17,8 @@ namespace DBConnection
         public int Id { get; set; }
         public int Avatar_Id { get; set; }
         public int Tag_Id { get; set; }
+    
+        public virtual Avatar Avatar { get; set; }
+        public virtual Tag Tag { get; set; }
     }
 }

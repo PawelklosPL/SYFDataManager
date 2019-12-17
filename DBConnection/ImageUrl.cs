@@ -14,8 +14,17 @@ namespace DBConnection
     
     public partial class ImageUrl
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ImageUrl()
+        {
+            this.Avatar_To_ImageUrl = new HashSet<Avatar_To_ImageUrl>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
         public string Url { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Avatar_To_ImageUrl> Avatar_To_ImageUrl { get; set; }
     }
 }

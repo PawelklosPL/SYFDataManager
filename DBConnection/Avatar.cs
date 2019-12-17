@@ -14,14 +14,28 @@ namespace DBConnection
     
     public partial class Avatar
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Avatar()
+        {
+            this.Avatar_To_Tag = new HashSet<Avatar_To_Tag>();
+            this.Avatar_To_ImageUrl = new HashSet<Avatar_To_ImageUrl>();
+        }
+    
         public int Id { get; set; }
         public string AuthorName { get; set; }
         public Nullable<int> AuthorId { get; set; }
         public string FolderName { get; set; }
-        public string ShortDescription { get; set; }
+        public string Description { get; set; }
         public Nullable<System.DateTime> PublishDate { get; set; }
         public Nullable<int> ImagesUrl_Id { get; set; }
         public Nullable<int> Tag_Id { get; set; }
-        public Nullable<int> SharePoint { get; set; }
+        public Nullable<int> SharePoints { get; set; }
+        public string Name { get; set; }
+        public Nullable<int> Comment_Id { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Avatar_To_Tag> Avatar_To_Tag { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Avatar_To_ImageUrl> Avatar_To_ImageUrl { get; set; }
     }
 }

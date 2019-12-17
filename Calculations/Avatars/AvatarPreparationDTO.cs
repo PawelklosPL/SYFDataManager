@@ -36,11 +36,11 @@ namespace Calculation.Avatar
             avatar.AuthorName = "Name";
             avatar.AuthorId = "1";
             avatar.FolderName = "FOLDER NAME";
-            avatar.ShortDescription = "short Desc";
+            avatar.Description = "short Desc";
             avatar.PublishDate = 12345;
             avatar.ImagesUrl = new string[1] { "/assets/temp/1.jpg" };
             avatar.Tags = new string[1] { "tagi" };
-            avatar.SharePoint = 333;
+            avatar.SharePoints = 333;
             return avatar;
         }
     }

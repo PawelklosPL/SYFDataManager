@@ -68,6 +68,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AspNetRole.cs">
+      <DependentUpon>SYFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>SYFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaim.cs">
+      <DependentUpon>SYFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogin.cs">
+      <DependentUpon>SYFModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Avatar.cs">
       <DependentUpon>SYFModel.tt</DependentUpon>
     </Compile>
@@ -75,6 +87,9 @@
       <DependentUpon>SYFModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Avatar_To_Tag.cs">
+      <DependentUpon>SYFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C__MigrationHistory.cs">
       <DependentUpon>SYFModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ImageUrl.cs">
@@ -131,6 +146,7 @@
       <DependentUpon>SYFModel.edmx</DependentUpon>
       <LastGenOutput>SYFModel.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="SYFModel.edmx.sql" />
     <Content Include="SYFModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SYFModel.edmx</DependentUpon>

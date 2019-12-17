@@ -11,21 +11,23 @@ namespace Calculations.Avatars
     {
         [JsonProperty("Id")]
         public int Id { get; set; }
+        [JsonProperty("Name")]
+        public string Name { get; set; }
         [JsonProperty("AuthorName")]
         public string AuthorName { get; set; }
         [JsonProperty("AuthorId")]
         public string AuthorId { get; set; }
         [JsonProperty("FolderName")]
         public string FolderName { get; set; }
-        [JsonProperty("ShortDescription")]
-        public string ShortDescription { get; set; }
+        [JsonProperty("Description")]
+        public string Description { get; set; }
         [JsonProperty("PublishDate")]
         public int PublishDate { get; set; }
         [JsonProperty("ImagesUrl")]
         public string[] ImagesUrl { get; set; }
         [JsonProperty("Tags")]
         public string[] Tags { get; set; }
-        [JsonProperty("SharePoint")]
-        public int SharePoint { get; set; }
+        [JsonProperty("SharePoints")]
+        public int SharePoints { get; set; }
     }
 }

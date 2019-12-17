@@ -14,8 +14,8 @@ namespace Calculations.Converters
             DBConnection.Avatar avatar = new DBConnection.Avatar();
             avatar.AuthorName = avatarModel.AuthorName;
             avatar.FolderName = avatarModel.FolderName;
-            avatar.SharePoint = avatarModel.SharePoint;
-            avatar.ShortDescription = avatarModel.ShortDescription;
+            avatar.SharePoints = avatarModel.SharePoints;
+            avatar.Description = avatarModel.Description;
             return avatar;
         }
     }
