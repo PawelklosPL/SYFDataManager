@@ -33,6 +33,7 @@ namespace Calculation.Avatar
         {
             AvatarModel avatar = new AvatarModel();
             avatar.Id = 1;
+            avatar.Name = "Artwork Name";
             avatar.AuthorName = "Name";
             avatar.AuthorId = "1";
             avatar.FolderName = "FOLDER NAME";
@@ -41,6 +42,8 @@ namespace Calculation.Avatar
             avatar.ImagesUrl = new string[1] { "/assets/temp/1.jpg" };
             avatar.Tags = new string[1] { "tagi" };
             avatar.SharePoints = 333;
+            avatar.Comment_Id = 15;
+            avatar.CommentNumber = 24;
             return avatar;
         }
     }

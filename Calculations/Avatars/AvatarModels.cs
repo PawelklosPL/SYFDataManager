@@ -29,5 +29,9 @@ namespace Calculations.Avatars
         public string[] Tags { get; set; }
         [JsonProperty("SharePoints")]
         public int SharePoints { get; set; }
+        [JsonProperty("Comment_Id")]
+        public int Comment_Id { get; set; }
+        [JsonProperty("CommentNumber")]
+        public int CommentNumber { get; set; }
     }
 }
