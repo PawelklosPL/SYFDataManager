@@ -26,7 +26,7 @@ namespace Calculation.Avatar
             //DBConnection.Avatar avatarDB = AvatarConverter.convert(avatar);
             DBConnection.Avatar avatarDB = new DBConnection.Avatar();
 
-            avatarDB.Name = "nnndabnnnsd";
+            avatarDB.Name = "Nowe";
             avatarDB.FolderName = "axcvxcvasd";
             avatarDB.Description = "asdasdf vsd";
             avatarDB.AuthorName = "asdasda";

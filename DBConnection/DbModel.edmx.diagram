@@ -13,7 +13,7 @@
         <EntityTypeShape EntityType="EntitiesModelDb.Avatar" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="EntitiesModelDb.Avatar_To_ImageUrl" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="EntitiesModelDb.Avatar_To_Tag" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EntitiesModelDb.Comment" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntitiesModelDb.Comment" Width="1.5" PointX="3.75" PointY="10" IsExpanded="true" />
         <EntityTypeShape EntityType="EntitiesModelDb.ImageUrl" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
         <EntityTypeShape EntityType="EntitiesModelDb.Tag" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="EntitiesModelDb.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
