@@ -19,6 +19,7 @@ namespace DBConnection
         {
             this.Avatar_To_Tag = new HashSet<Avatar_To_Tag>();
             this.Avatar_To_ImageUrl = new HashSet<Avatar_To_ImageUrl>();
+            this.Comments = new HashSet<Comment>();
         }
     
         public int Id { get; set; }
@@ -31,11 +32,12 @@ namespace DBConnection
         public Nullable<int> Tag_Id { get; set; }
         public Nullable<int> SharePoints { get; set; }
         public string Name { get; set; }
-        public Nullable<int> Comment_Id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Avatar_To_Tag> Avatar_To_Tag { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Avatar_To_ImageUrl> Avatar_To_ImageUrl { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

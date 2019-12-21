@@ -36,19 +36,18 @@ namespace SYFDataManager.Controllers
 
         // POST: Avatar/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(AvatarModel avatar)
         {
             try
             {
-                AvatarPreparationDTO avatars = new AvatarPreparationDTO();
-
-                AvatarModel avatar = new AvatarModel();
-                avatars.createAvatar(avatar);
+                AvatarPreparationDTO model = new AvatarPreparationDTO();
+                model.createAvatar(avatar);
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception e)
             {
+                Console.WriteLine(e.ToString());
                 return View();
             }
         }

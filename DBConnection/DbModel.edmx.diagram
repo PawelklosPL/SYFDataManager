@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="94bc9b865e02443b9dfcc3c67b3a5ba6" Name="Diagram1">
+        <EntityTypeShape EntityType="EntitiesModelDb.C__MigrationHistory" Width="1.5" PointX="2.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntitiesModelDb.AspNetRole" Width="1.5" PointX="5.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntitiesModelDb.AspNetUserClaim" Width="1.5" PointX="10.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntitiesModelDb.AspNetUserLogin" Width="1.5" PointX="10.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntitiesModelDb.AspNetUser" Width="1.5" PointX="8" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntitiesModelDb.Avatar" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntitiesModelDb.Avatar_To_ImageUrl" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntitiesModelDb.Avatar_To_Tag" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntitiesModelDb.Comment" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntitiesModelDb.ImageUrl" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntitiesModelDb.Tag" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="EntitiesModelDb.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="EntitiesModelDb.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="EntitiesModelDb.FK__Avatar_To__Avata__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="EntitiesModelDb.FK__Avatar_To__Avata__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="EntitiesModelDb.FK__Comment__Author___01142BA1" ManuallyRouted="false" />
+        <AssociationConnector Association="EntitiesModelDb.FK__Avatar_To__Image__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="EntitiesModelDb.FK__Avatar_To__Tag_I__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="EntitiesModelDb.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -21,11 +21,23 @@ namespace Calculation.Avatar
         }
         public bool createAvatar(AvatarModel avatar)
         {
-            SyfModelCon modelConnection = new SyfModelCon();
+            //EntitiesDbModel model = new EntitiesDbModel();
 
-            DBConnection.Avatar avatarDB = AvatarConverter.convert(avatar);
+            //DBConnection.Avatar avatarDB = AvatarConverter.convert(avatar);
+            DBConnection.Avatar avatarDB = new DBConnection.Avatar();
 
-            modelConnection.Avatars.Add(avatarDB);
+            avatarDB.Name = "nnndabnnnsd";
+            avatarDB.FolderName = "axcvxcvasd";
+            avatarDB.Description = "asdasdf vsd";
+            avatarDB.AuthorName = "asdasda";
+            avatarDB.Id = 132;
+
+            using (EntitiesDbModel db = new EntitiesDbModel())
+            {
+                var customers = db.Set<DBConnection.Avatar>();
+                customers.Add(avatarDB);
+                db.SaveChanges();
+            }
 
             return true;
         }
