@@ -69,49 +69,49 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AspNetRole.cs">
-      <DependentUpon>DbModel.tt</DependentUpon>
+      <DependentUpon>ModelSyf.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUser.cs">
-      <DependentUpon>DbModel.tt</DependentUpon>
+      <DependentUpon>ModelSyf.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUserClaim.cs">
-      <DependentUpon>DbModel.tt</DependentUpon>
+      <DependentUpon>ModelSyf.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUserLogin.cs">
-      <DependentUpon>DbModel.tt</DependentUpon>
+      <DependentUpon>ModelSyf.tt</DependentUpon>
     </Compile>
     <Compile Include="Avatar.cs">
-      <DependentUpon>DbModel.tt</DependentUpon>
+      <DependentUpon>ModelSyf.tt</DependentUpon>
     </Compile>
     <Compile Include="Avatar_To_ImageUrl.cs">
-      <DependentUpon>DbModel.tt</DependentUpon>
+      <DependentUpon>ModelSyf.tt</DependentUpon>
     </Compile>
     <Compile Include="Avatar_To_Tag.cs">
-      <DependentUpon>DbModel.tt</DependentUpon>
+      <DependentUpon>ModelSyf.tt</DependentUpon>
     </Compile>
     <Compile Include="Comment.cs">
-      <DependentUpon>DbModel.tt</DependentUpon>
+      <DependentUpon>ModelSyf.tt</DependentUpon>
     </Compile>
     <Compile Include="C__MigrationHistory.cs">
-      <DependentUpon>DbModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DbModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DbModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DbModel.edmx</DependentUpon>
+      <DependentUpon>ModelSyf.tt</DependentUpon>
     </Compile>
     <Compile Include="ImageUrl.cs">
-      <DependentUpon>DbModel.tt</DependentUpon>
+      <DependentUpon>ModelSyf.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelSyf.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelSyf.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelSyf.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelSyf.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelSyf.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelSyf.edmx</DependentUpon>
     </Compile>
     <Compile Include="Service1.cs">
       <SubType>Component</SubType>
@@ -122,31 +122,19 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tag.cs">
-      <DependentUpon>DbModel.tt</DependentUpon>
+      <DependentUpon>ModelSyf.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="DbModel.edmx">
+    <EntityDeploy Include="ModelSyf.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DbModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>ModelSyf.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="DbModel.edmx.diagram">
-      <DependentUpon>DbModel.edmx</DependentUpon>
+    <None Include="ModelSyf.edmx.diagram">
+      <DependentUpon>ModelSyf.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DbModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DbModel.edmx</DependentUpon>
-      <LastGenOutput>DbModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DbModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DbModel.edmx</DependentUpon>
-      <LastGenOutput>DbModel.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -162,6 +150,18 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ModelSyf.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelSyf.edmx</DependentUpon>
+      <LastGenOutput>ModelSyf.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModelSyf.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelSyf.edmx</DependentUpon>
+      <LastGenOutput>ModelSyf.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -21,21 +21,33 @@ namespace Calculation.Avatar
         }
         public bool createAvatar(AvatarModel avatar)
         {
-            //EntitiesDbModel model = new EntitiesDbModel();
 
-            //DBConnection.Avatar avatarDB = AvatarConverter.convert(avatar);
             DBConnection.Avatar avatarDB = new DBConnection.Avatar();
+            avatarDB.AuthorId = Int32.Parse(avatar.AuthorId);
+            avatarDB.AuthorName = avatar.AuthorName;
+            avatarDB.Description = avatar.Description;
+            avatarDB.FolderName = avatar.FolderName;
+            avatarDB.Name = avatar.Name;
+            avatarDB.PublishDate = DateTime.Now;
+            avatarDB.SharePoints = 0;
 
-            avatarDB.Name = "Nowe";
-            avatarDB.FolderName = "axcvxcvasd";
-            avatarDB.Description = "asdasdf vsd";
-            avatarDB.AuthorName = "asdasda";
-            avatarDB.Id = 132;
+            ImageUrl imageUrl = new ImageUrl();
+            imageUrl.Name = avatar.Name;
+            imageUrl.Url = avatar.ImagesUrl[0];
 
-            using (EntitiesDbModel db = new EntitiesDbModel())
+            Avatar_To_ImageUrl avatarToImageUrl = new Avatar_To_ImageUrl();
+            avatarToImageUrl.Avatar_Id = avatar.Id;
+            avatarToImageUrl.ImageUrl_Id = imageUrl.Id;
+
+
+            using (EntitiesSyf db = new EntitiesSyf())
             {
-                var customers = db.Set<DBConnection.Avatar>();
-                customers.Add(avatarDB);
+                var avatars = db.Set<DBConnection.Avatar>();
+                avatars.Add(avatarDB);
+                var imageUrls = db.Set<DBConnection.ImageUrl>();
+                imageUrls.Add(imageUrl);
+                var AvatarToImageUrls = db.Set<DBConnection.Avatar_To_ImageUrl>();
+                AvatarToImageUrls.Add(avatarToImageUrl);
                 db.SaveChanges();
             }
 

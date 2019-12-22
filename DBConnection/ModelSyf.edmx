@@ -1,0 +1,709 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ModelSyf.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Avatar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AuthorName" Type="varchar" MaxLength="100" />
+          <Property Name="AuthorId" Type="int" />
+          <Property Name="FolderName" Type="varchar" MaxLength="100" />
+          <Property Name="Description" Type="varchar" MaxLength="250" />
+          <Property Name="PublishDate" Type="date" />
+          <Property Name="ImagesUrl_Id" Type="int" />
+          <Property Name="Tag_Id" Type="int" />
+          <Property Name="SharePoints" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Avatar_To_ImageUrl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Avatar_Id" Type="int" Nullable="false" />
+          <Property Name="ImageUrl_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Avatar_To_Tag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Avatar_Id" Type="int" Nullable="false" />
+          <Property Name="Tag_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="AuthorName" Type="nvarchar" MaxLength="250" />
+          <Property Name="Content" Type="nvarchar" MaxLength="250" />
+          <Property Name="Avatar_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ImageUrl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Url" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__Avatar_To__Avata__47DBAE45">
+          <End Role="Avatar" Type="Self.Avatar" Multiplicity="1" />
+          <End Role="Avatar_To_Tag" Type="Self.Avatar_To_Tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Avatar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Avatar_To_Tag">
+              <PropertyRef Name="Avatar_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Avatar_To__Avata__6E01572D">
+          <End Role="Avatar" Type="Self.Avatar" Multiplicity="1" />
+          <End Role="Avatar_To_ImageUrl" Type="Self.Avatar_To_ImageUrl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Avatar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Avatar_To_ImageUrl">
+              <PropertyRef Name="Avatar_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Avatar_To__Image__6EF57B66">
+          <End Role="ImageUrl" Type="Self.ImageUrl" Multiplicity="1" />
+          <End Role="Avatar_To_ImageUrl" Type="Self.Avatar_To_ImageUrl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ImageUrl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Avatar_To_ImageUrl">
+              <PropertyRef Name="ImageUrl_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Avatar_To__Tag_I__48CFD27E">
+          <End Role="Tag" Type="Self.Tag" Multiplicity="1" />
+          <End Role="Avatar_To_Tag" Type="Self.Avatar_To_Tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Avatar_To_Tag">
+              <PropertyRef Name="Tag_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comment__Avatar___5CD6CB2B">
+          <End Role="Avatar" Type="Self.Avatar" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Avatar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="Avatar_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelSyfStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Avatar" EntityType="Self.Avatar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Avatar_To_ImageUrl" EntityType="Self.Avatar_To_ImageUrl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Avatar_To_Tag" EntityType="Self.Avatar_To_Tag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImageUrl" EntityType="Self.ImageUrl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tag" EntityType="Self.Tag" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Avatar_To__Avata__47DBAE45" Association="Self.FK__Avatar_To__Avata__47DBAE45">
+            <End Role="Avatar" EntitySet="Avatar" />
+            <End Role="Avatar_To_Tag" EntitySet="Avatar_To_Tag" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Avatar_To__Avata__6E01572D" Association="Self.FK__Avatar_To__Avata__6E01572D">
+            <End Role="Avatar" EntitySet="Avatar" />
+            <End Role="Avatar_To_ImageUrl" EntitySet="Avatar_To_ImageUrl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Avatar_To__Image__6EF57B66" Association="Self.FK__Avatar_To__Image__6EF57B66">
+            <End Role="ImageUrl" EntitySet="ImageUrl" />
+            <End Role="Avatar_To_ImageUrl" EntitySet="Avatar_To_ImageUrl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Avatar_To__Tag_I__48CFD27E" Association="Self.FK__Avatar_To__Tag_I__48CFD27E">
+            <End Role="Tag" EntitySet="Tag" />
+            <End Role="Avatar_To_Tag" EntitySet="Avatar_To_Tag" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comment__Avatar___5CD6CB2B" Association="Self.FK__Comment__Avatar___5CD6CB2B">
+            <End Role="Avatar" EntitySet="Avatar" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ModelSyf" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="Avatar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AuthorName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AuthorId" Type="Int32" />
+          <Property Name="FolderName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="PublishDate" Type="DateTime" Precision="0" />
+          <Property Name="ImagesUrl_Id" Type="Int32" />
+          <Property Name="Tag_Id" Type="Int32" />
+          <Property Name="SharePoints" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Avatar_To_Tag" Relationship="Self.FK__Avatar_To__Avata__47DBAE45" FromRole="Avatar" ToRole="Avatar_To_Tag" />
+          <NavigationProperty Name="Avatar_To_ImageUrl" Relationship="Self.FK__Avatar_To__Avata__6E01572D" FromRole="Avatar" ToRole="Avatar_To_ImageUrl" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK__Comment__Avatar___5CD6CB2B" FromRole="Avatar" ToRole="Comment" />
+        </EntityType>
+        <EntityType Name="Avatar_To_ImageUrl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Avatar_Id" Type="Int32" Nullable="false" />
+          <Property Name="ImageUrl_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Avatar" Relationship="Self.FK__Avatar_To__Avata__6E01572D" FromRole="Avatar_To_ImageUrl" ToRole="Avatar" />
+          <NavigationProperty Name="ImageUrl" Relationship="Self.FK__Avatar_To__Image__6EF57B66" FromRole="Avatar_To_ImageUrl" ToRole="ImageUrl" />
+        </EntityType>
+        <EntityType Name="Avatar_To_Tag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Avatar_Id" Type="Int32" Nullable="false" />
+          <Property Name="Tag_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Avatar" Relationship="Self.FK__Avatar_To__Avata__47DBAE45" FromRole="Avatar_To_Tag" ToRole="Avatar" />
+          <NavigationProperty Name="Tag" Relationship="Self.FK__Avatar_To__Tag_I__48CFD27E" FromRole="Avatar_To_Tag" ToRole="Tag" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="AuthorName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Avatar_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Avatar" Relationship="Self.FK__Comment__Avatar___5CD6CB2B" FromRole="Comment" ToRole="Avatar" />
+        </EntityType>
+        <EntityType Name="ImageUrl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Url" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Avatar_To_ImageUrl" Relationship="Self.FK__Avatar_To__Image__6EF57B66" FromRole="ImageUrl" ToRole="Avatar_To_ImageUrl" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Avatar_To_Tag" Relationship="Self.FK__Avatar_To__Tag_I__48CFD27E" FromRole="Tag" ToRole="Avatar_To_Tag" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Avatar_To__Avata__47DBAE45">
+          <End Role="Avatar" Type="Self.Avatar" Multiplicity="1" />
+          <End Role="Avatar_To_Tag" Type="Self.Avatar_To_Tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Avatar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Avatar_To_Tag">
+              <PropertyRef Name="Avatar_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Avatar_To__Avata__6E01572D">
+          <End Role="Avatar" Type="Self.Avatar" Multiplicity="1" />
+          <End Role="Avatar_To_ImageUrl" Type="Self.Avatar_To_ImageUrl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Avatar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Avatar_To_ImageUrl">
+              <PropertyRef Name="Avatar_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comment__Avatar___5CD6CB2B">
+          <End Role="Avatar" Type="Self.Avatar" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Avatar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="Avatar_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Avatar_To__Image__6EF57B66">
+          <End Role="ImageUrl" Type="Self.ImageUrl" Multiplicity="1" />
+          <End Role="Avatar_To_ImageUrl" Type="Self.Avatar_To_ImageUrl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ImageUrl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Avatar_To_ImageUrl">
+              <PropertyRef Name="ImageUrl_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Avatar_To__Tag_I__48CFD27E">
+          <End Role="Tag" Type="Self.Tag" Multiplicity="1" />
+          <End Role="Avatar_To_Tag" Type="Self.Avatar_To_Tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Avatar_To_Tag">
+              <PropertyRef Name="Tag_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="EntitiesSyf" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="Avatars" EntityType="Self.Avatar" />
+          <EntitySet Name="Avatar_To_ImageUrl" EntityType="Self.Avatar_To_ImageUrl" />
+          <EntitySet Name="Avatar_To_Tag" EntityType="Self.Avatar_To_Tag" />
+          <EntitySet Name="Comments" EntityType="Self.Comment" />
+          <EntitySet Name="ImageUrls" EntityType="Self.ImageUrl" />
+          <EntitySet Name="Tags" EntityType="Self.Tag" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Avatar_To__Avata__47DBAE45" Association="Self.FK__Avatar_To__Avata__47DBAE45">
+            <End Role="Avatar" EntitySet="Avatars" />
+            <End Role="Avatar_To_Tag" EntitySet="Avatar_To_Tag" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Avatar_To__Avata__6E01572D" Association="Self.FK__Avatar_To__Avata__6E01572D">
+            <End Role="Avatar" EntitySet="Avatars" />
+            <End Role="Avatar_To_ImageUrl" EntitySet="Avatar_To_ImageUrl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comment__Avatar___5CD6CB2B" Association="Self.FK__Comment__Avatar___5CD6CB2B">
+            <End Role="Avatar" EntitySet="Avatars" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Avatar_To__Image__6EF57B66" Association="Self.FK__Avatar_To__Image__6EF57B66">
+            <End Role="ImageUrl" EntitySet="ImageUrls" />
+            <End Role="Avatar_To_ImageUrl" EntitySet="Avatar_To_ImageUrl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Avatar_To__Tag_I__48CFD27E" Association="Self.FK__Avatar_To__Tag_I__48CFD27E">
+            <End Role="Tag" EntitySet="Tags" />
+            <End Role="Avatar_To_Tag" EntitySet="Avatar_To_Tag" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelSyfStoreContainer" CdmEntityContainer="EntitiesSyf">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="ModelSyf.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="ModelSyf.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="ModelSyf.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="ModelSyf.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="ModelSyf.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Avatars">
+            <EntityTypeMapping TypeName="ModelSyf.Avatar">
+              <MappingFragment StoreEntitySet="Avatar">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AuthorName" ColumnName="AuthorName" />
+                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+                <ScalarProperty Name="FolderName" ColumnName="FolderName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
+                <ScalarProperty Name="ImagesUrl_Id" ColumnName="ImagesUrl_Id" />
+                <ScalarProperty Name="Tag_Id" ColumnName="Tag_Id" />
+                <ScalarProperty Name="SharePoints" ColumnName="SharePoints" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Avatar_To_ImageUrl">
+            <EntityTypeMapping TypeName="ModelSyf.Avatar_To_ImageUrl">
+              <MappingFragment StoreEntitySet="Avatar_To_ImageUrl">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Avatar_Id" ColumnName="Avatar_Id" />
+                <ScalarProperty Name="ImageUrl_Id" ColumnName="ImageUrl_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Avatar_To_Tag">
+            <EntityTypeMapping TypeName="ModelSyf.Avatar_To_Tag">
+              <MappingFragment StoreEntitySet="Avatar_To_Tag">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Avatar_Id" ColumnName="Avatar_Id" />
+                <ScalarProperty Name="Tag_Id" ColumnName="Tag_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="ModelSyf.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AuthorName" ColumnName="AuthorName" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Avatar_Id" ColumnName="Avatar_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImageUrls">
+            <EntityTypeMapping TypeName="ModelSyf.ImageUrl">
+              <MappingFragment StoreEntitySet="ImageUrl">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tags">
+            <EntityTypeMapping TypeName="ModelSyf.Tag">
+              <MappingFragment StoreEntitySet="Tag">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="ModelSyf.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
