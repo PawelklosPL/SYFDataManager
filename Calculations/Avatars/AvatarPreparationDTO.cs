@@ -31,23 +31,43 @@ namespace Calculation.Avatar
             avatarDB.PublishDate = DateTime.Now;
             avatarDB.SharePoints = 0;
 
-            //ImageUrl imageUrl = new ImageUrl();
-            //imageUrl.Name = avatar.Name;
-            //imageUrl.Url = avatar.ImagesUrl[0];
+            ImageUrl imageUrl = new ImageUrl();
+            imageUrl.Name = avatar.Name;
+            imageUrl.Url = avatar.ImagesUrl[0];
 
-            //Avatar_To_ImageUrl avatarToImageUrl = new Avatar_To_ImageUrl();
-            //avatarToImageUrl.Avatar_Id = avatar.Id;
-            //avatarToImageUrl.ImageUrl_Id = imageUrl.Id;
+            Avatar_To_ImageUrl avatarToImageUrl = new Avatar_To_ImageUrl();
 
-            int createdAvatarId;
+            Tag tag = new Tag();
+            tag.Name = avatar.Tags[0];
+
+            Avatar_To_Tag avatarToTag = new Avatar_To_Tag();
+
+
             using (SyfDbEntities db = new SyfDbEntities())
             {
                 var avatars = db.Set<DBConnection.Avatar>();
                 avatars.Add(avatarDB);
-                //var imageUrls = db.Set<DBConnection.ImageUrl>();
-                //imageUrls.Add(imageUrl);
-                //var AvatarToImageUrls = db.Set<DBConnection.Avatar_To_ImageUrl>();
-                //AvatarToImageUrls.Add(avatarToImageUrl);
+
+                var images = db.Set<DBConnection.ImageUrl>();
+                images.Add(imageUrl);
+
+                var tagAvatar = db.Set<DBConnection.Tag>();
+                tagAvatar.Add(tag);
+
+
+                db.SaveChanges();
+
+                var AvatarToImageUrls = db.Set<DBConnection.Avatar_To_ImageUrl>();
+                avatarToImageUrl.Avatar_Id = avatarDB.Id;
+                avatarToImageUrl.ImageUrl_Id = imageUrl.Id;
+                AvatarToImageUrls.Add(avatarToImageUrl);
+
+                var AvatarToTag = db.Set<DBConnection.Avatar_To_Tag>();
+                avatarToTag.Avatar_Id = avatarDB.Id;
+                avatarToTag.Tag_Id = tag.Id;
+                AvatarToTag.Add(avatarToTag);
+
+
                 db.SaveChanges();
             }
 
