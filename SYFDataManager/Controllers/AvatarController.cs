@@ -43,7 +43,7 @@ namespace SYFDataManager.Controllers
                 AvatarPreparationDTO model = new AvatarPreparationDTO();
                 model.createAvatar(avatar);
 
-                return RedirectToAction("Index");
+                return Content(JsonConvert.SerializeObject(avatar));
             }
             catch(Exception e)
             {

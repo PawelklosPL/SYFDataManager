@@ -31,23 +31,23 @@ namespace Calculation.Avatar
             avatarDB.PublishDate = DateTime.Now;
             avatarDB.SharePoints = 0;
 
-            ImageUrl imageUrl = new ImageUrl();
-            imageUrl.Name = avatar.Name;
-            imageUrl.Url = avatar.ImagesUrl[0];
+            //ImageUrl imageUrl = new ImageUrl();
+            //imageUrl.Name = avatar.Name;
+            //imageUrl.Url = avatar.ImagesUrl[0];
 
-            Avatar_To_ImageUrl avatarToImageUrl = new Avatar_To_ImageUrl();
-            avatarToImageUrl.Avatar_Id = avatar.Id;
-            avatarToImageUrl.ImageUrl_Id = imageUrl.Id;
+            //Avatar_To_ImageUrl avatarToImageUrl = new Avatar_To_ImageUrl();
+            //avatarToImageUrl.Avatar_Id = avatar.Id;
+            //avatarToImageUrl.ImageUrl_Id = imageUrl.Id;
 
-
-            using (EntitiesSyf db = new EntitiesSyf())
+            int createdAvatarId;
+            using (SyfDbEntities db = new SyfDbEntities())
             {
                 var avatars = db.Set<DBConnection.Avatar>();
                 avatars.Add(avatarDB);
-                var imageUrls = db.Set<DBConnection.ImageUrl>();
-                imageUrls.Add(imageUrl);
-                var AvatarToImageUrls = db.Set<DBConnection.Avatar_To_ImageUrl>();
-                AvatarToImageUrls.Add(avatarToImageUrl);
+                //var imageUrls = db.Set<DBConnection.ImageUrl>();
+                //imageUrls.Add(imageUrl);
+                //var AvatarToImageUrls = db.Set<DBConnection.Avatar_To_ImageUrl>();
+                //AvatarToImageUrls.Add(avatarToImageUrl);
                 db.SaveChanges();
             }
 

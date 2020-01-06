@@ -69,49 +69,34 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AspNetRole.cs">
-      <DependentUpon>ModelSyf.tt</DependentUpon>
+      <DependentUpon>SyfDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUser.cs">
-      <DependentUpon>ModelSyf.tt</DependentUpon>
+      <DependentUpon>SyfDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUserClaim.cs">
-      <DependentUpon>ModelSyf.tt</DependentUpon>
+      <DependentUpon>SyfDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUserLogin.cs">
-      <DependentUpon>ModelSyf.tt</DependentUpon>
+      <DependentUpon>SyfDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Avatar.cs">
-      <DependentUpon>ModelSyf.tt</DependentUpon>
+      <DependentUpon>SyfDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Avatar_To_ImageUrl.cs">
-      <DependentUpon>ModelSyf.tt</DependentUpon>
+      <DependentUpon>SyfDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Avatar_To_Tag.cs">
-      <DependentUpon>ModelSyf.tt</DependentUpon>
+      <DependentUpon>SyfDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Comment.cs">
-      <DependentUpon>ModelSyf.tt</DependentUpon>
+      <DependentUpon>SyfDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="C__MigrationHistory.cs">
-      <DependentUpon>ModelSyf.tt</DependentUpon>
+      <DependentUpon>SyfDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ImageUrl.cs">
-      <DependentUpon>ModelSyf.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelSyf.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelSyf.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelSyf.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelSyf.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelSyf.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelSyf.edmx</DependentUpon>
+      <DependentUpon>SyfDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Service1.cs">
       <SubType>Component</SubType>
@@ -121,20 +106,35 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SyfDbModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SyfDbModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SyfDbModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SyfDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SyfDbModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SyfDbModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Tag.cs">
-      <DependentUpon>ModelSyf.tt</DependentUpon>
+      <DependentUpon>SyfDbModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="ModelSyf.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelSyf.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="ModelSyf.edmx.diagram">
-      <DependentUpon>ModelSyf.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
+    <EntityDeploy Include="SyfDbModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SyfDbModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="SyfDbModel.edmx.diagram">
+      <DependentUpon>SyfDbModel.edmx</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -152,15 +152,15 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ModelSyf.Context.tt">
+    <Content Include="SyfDbModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelSyf.edmx</DependentUpon>
-      <LastGenOutput>ModelSyf.Context.cs</LastGenOutput>
+      <DependentUpon>SyfDbModel.edmx</DependentUpon>
+      <LastGenOutput>SyfDbModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="ModelSyf.tt">
+    <Content Include="SyfDbModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelSyf.edmx</DependentUpon>
-      <LastGenOutput>ModelSyf.cs</LastGenOutput>
+      <DependentUpon>SyfDbModel.edmx</DependentUpon>
+      <LastGenOutput>SyfDbModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
