@@ -14,7 +14,7 @@
         <EntityTypeShape EntityType="SyfDbModel.Avatar_To_ImageUrl" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SyfDbModel.Avatar_To_Tag" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SyfDbModel.Comment" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="SyfDbModel.ImageUrl" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SyfDbModel.ImageUrl" Width="1.5" PointX="6.25" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="SyfDbModel.Tag" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="SyfDbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="SyfDbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
