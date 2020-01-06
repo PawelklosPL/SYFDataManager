@@ -24,7 +24,7 @@ namespace Calculation.Avatar
                     string[] imagesUrl= new string[1];
                     imagesUrl[0] = avatar.ImagesUrl_Id.ToString();
                     avatarModel.ImagesUrl = new string[1] { "/assets/temp/1.jpg" };
-
+                     
                     avatarModel.Description = avatar.Description;
                     avatarModel.AuthorId = avatar.AuthorId.ToString();
 
