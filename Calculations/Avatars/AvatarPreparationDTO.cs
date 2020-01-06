@@ -11,13 +11,35 @@ namespace Calculation.Avatar
     {
         public List<AvatarModel> getAvatarsList(int avatarNumber)
         {
-            List<AvatarModel> avatars = new List<AvatarModel>();
+            List<AvatarModel> avatarsList = new List<AvatarModel>();
 
-            for(int i = 0; i < avatarNumber; i++)
+            using (SyfDbEntities db = new SyfDbEntities())
             {
-                avatars.Add(dummyAvatar());
+                foreach(var avatar in db.Avatars)
+                {
+                    AvatarModel avatarModel = new AvatarModel();
+                    avatarModel.Id = avatar.Id;
+                    avatarModel.Name = avatar.Name;
+
+                    string[] imagesUrl= new string[1];
+                    imagesUrl[0] = avatar.ImagesUrl_Id.ToString();
+                    avatarModel.ImagesUrl = new string[1] { "/assets/temp/1.jpg" };
+
+                    avatarModel.Description = avatar.Description;
+                    avatarModel.AuthorId = avatar.AuthorId.ToString();
+
+                    string[] tags = new string[1];
+                    tags[0] = avatar.Tag_Id.ToString();
+                    avatarModel.Tags = tags;
+
+                    if(avatar.SharePoints != null)
+                    {
+                        avatarModel.SharePoints = Convert.ToInt32(avatar.SharePoints);
+                    }
+                    avatarsList.Add(avatarModel);
+                }
             }
-            return avatars;
+               return avatarsList;
         }
         public bool createAvatar(AvatarModel avatar)
         {
