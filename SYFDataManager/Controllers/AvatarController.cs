@@ -24,7 +24,8 @@ namespace SYFDataManager.Controllers
         // GET: Avatar/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            AvatarPreparationDTO avatars = new AvatarPreparationDTO();
+            return Content(JsonConvert.SerializeObject(avatars.getAvatar(id)));
         }
 
         // GET: Avatar/Create

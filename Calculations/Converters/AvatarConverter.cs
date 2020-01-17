@@ -9,7 +9,7 @@ namespace Calculations.Converters
 {
     class AvatarConverter
     {
-        public static DBConnection.Avatar convert(AvatarModel avatarModel)
+        public static DBConnection.Avatar convertToModel(AvatarModel avatarModel)
         {
             DBConnection.Avatar avatar = new DBConnection.Avatar();
             avatar.AuthorName = avatarModel.AuthorName;
@@ -18,5 +18,29 @@ namespace Calculations.Converters
             avatar.Description = avatarModel.Description;
             return avatar;
         }
+        public static AvatarModel convertFromModel(DBConnection.Avatar avatarModel)
+        {
+            AvatarModel avatar = new AvatarModel();
+
+            avatar.Id = avatarModel.Id;
+            avatar.Name = avatarModel.Name;
+            avatar.FolderName = avatarModel.FolderName;
+            avatar.Description = avatarModel.Description;
+            avatar.Comment_Id = 0;
+            avatar.AuthorName = avatarModel.AuthorName;
+            avatar.CommentNumber = 0;
+            avatar.ImagesUrl = new string[1] { "/assets/temp/1.jpg" };
+            avatar.Tags = new string[1] { "tagi" };
+
+            avatar.PublishDate = 0;
+            if (avatarModel.SharePoints != null)
+            { 
+                avatar.SharePoints = (int)avatarModel.SharePoints;
+            }
+
+            return avatar;
+        }
+  
+
     }
 }

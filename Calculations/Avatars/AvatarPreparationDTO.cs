@@ -3,6 +3,7 @@ using Calculations.Converters;
 using DBConnection;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Calculation.Avatar
@@ -41,6 +42,18 @@ namespace Calculation.Avatar
             }
                return avatarsList;
         }
+        public AvatarModel getAvatar(int AvatarId)
+        {
+            AvatarModel avatar = new AvatarModel();
+            DBConnection.Avatar avatarDB = new DBConnection.Avatar();
+            using (SyfDbEntities db = new SyfDbEntities())
+            {
+                avatarDB = db.Avatars.First(c => c.Id == AvatarId);
+                avatar = AvatarConverter.convertFromModel(avatarDB);
+            }
+
+            return avatar;
+        }
         public bool createAvatar(AvatarModel avatar)
         {
 
@@ -59,8 +72,13 @@ namespace Calculation.Avatar
 
             Avatar_To_ImageUrl avatarToImageUrl = new Avatar_To_ImageUrl();
 
-            Tag tag = new Tag();
-            tag.Name = avatar.Tags[0];
+            List<Tag> tags = new List<Tag>();
+            foreach(string currentTag in avatar.Tags)
+            {
+                Tag tag = new Tag();
+                tag.Name = currentTag;
+                tags.Add(tag);
+            }
 
             Avatar_To_Tag avatarToTag = new Avatar_To_Tag();
 
@@ -73,8 +91,12 @@ namespace Calculation.Avatar
                 var images = db.Set<DBConnection.ImageUrl>();
                 images.Add(imageUrl);
 
-                var tagAvatar = db.Set<DBConnection.Tag>();
-                tagAvatar.Add(tag);
+                foreach (Tag tag in tags)
+                {
+                    var tagAvatar = db.Set<DBConnection.Tag>();
+                    tagAvatar.Add(tag);
+                }
+
 
 
                 db.SaveChanges();
@@ -84,33 +106,20 @@ namespace Calculation.Avatar
                 avatarToImageUrl.ImageUrl_Id = imageUrl.Id;
                 AvatarToImageUrls.Add(avatarToImageUrl);
 
-                var AvatarToTag = db.Set<DBConnection.Avatar_To_Tag>();
-                avatarToTag.Avatar_Id = avatarDB.Id;
-                avatarToTag.Tag_Id = tag.Id;
-                AvatarToTag.Add(avatarToTag);
+                foreach (Tag tag in tags)
+                {
+                    var AvatarToTag = db.Set<DBConnection.Avatar_To_Tag>();
+                    avatarToTag.Avatar_Id = avatarDB.Id;
+                    avatarToTag.Tag_Id = tag.Id;
+                    AvatarToTag.Add(avatarToTag);
+                }
+
 
 
                 db.SaveChanges();
             }
 
             return true;
-        }
-        private AvatarModel dummyAvatar()
-        {
-            AvatarModel avatar = new AvatarModel();
-            avatar.Id = 1;
-            avatar.Name = "Artwork Name";
-            avatar.AuthorName = "Name";
-            avatar.AuthorId = "1";
-            avatar.FolderName = "FOLDER NAME";
-            avatar.Description = "short Desc";
-            avatar.PublishDate = 12345;
-            avatar.ImagesUrl = new string[1] { "/assets/temp/1.jpg" };
-            avatar.Tags = new string[1] { "tagi" };
-            avatar.SharePoints = 333;
-            avatar.Comment_Id = 15;
-            avatar.CommentNumber = 24;
-            return avatar;
         }
     }
 }
