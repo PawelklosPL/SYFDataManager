@@ -16,23 +16,46 @@ namespace SYFDataManager.Controllers
         // GET: Avatar
         public ActionResult Index()
         {
-            AvatarPreparationDTO avatars = new AvatarPreparationDTO();
 
-            return Content(JsonConvert.SerializeObject(avatars.getAvatarsList(10)));
+            try
+            {
+                AvatarPreparationDTO avatars = new AvatarPreparationDTO();
+                return Content(JsonConvert.SerializeObject(avatars.getAvatarsList(10)));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return View();
+            }
         }
 
         // GET: Avatar/Details/5
         public ActionResult Details(int id)
         {
-            AvatarPreparationDTO avatars = new AvatarPreparationDTO();
-            return Content(JsonConvert.SerializeObject(avatars.getAvatar(id)));
+            try
+            {
+                AvatarPreparationDTO avatars = new AvatarPreparationDTO();
+                return Content(JsonConvert.SerializeObject(avatars.getAvatar(id)));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return View();
+            }
         }
 
         // GET: Avatar/Create
         public ActionResult Create()
         {
-
-            return View();
+            try
+            {
+                return View();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return View();
+            }
         }
 
         // POST: Avatar/Create
@@ -78,7 +101,17 @@ namespace SYFDataManager.Controllers
         // GET: Avatar/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            try
+            {
+                AvatarPreparationDTO model = new AvatarPreparationDTO();
+                model.deleteAvatar(id);
+                return Content(JsonConvert.SerializeObject(true));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return View();
+            }
         }
 
         // POST: Avatar/Delete/5
