@@ -66,58 +66,54 @@ namespace Calculation.Avatar
             avatarDB.PublishDate = DateTime.Now;
             avatarDB.SharePoints = 0;
 
-            ImageUrl imageUrl = new ImageUrl();
-            imageUrl.Name = avatar.Name;
-            imageUrl.Url = avatar.ImagesUrl[0];
+            List<Avatar_To_ImageUrl> avatarToImageUrlDBConnect = new List<Avatar_To_ImageUrl>();
+            AddImages(avatar, avatarToImageUrlDBConnect);
+            avatarDB.Avatar_To_ImageUrl = avatarToImageUrlDBConnect;
 
-            Avatar_To_ImageUrl avatarToImageUrl = new Avatar_To_ImageUrl();
 
-            List<Tag> tags = new List<Tag>();
-            foreach(string currentTag in avatar.Tags)
-            {
-                Tag tag = new Tag();
-                tag.Name = currentTag;
-                tags.Add(tag);
-            }
-
-            Avatar_To_Tag avatarToTag = new Avatar_To_Tag();
+            List<Avatar_To_Tag> avatarToTagDBConnect = new List<Avatar_To_Tag>();
+            AddTags(avatar, avatarToTagDBConnect);
+            avatarDB.Avatar_To_Tag = avatarToTagDBConnect;
 
 
             using (SyfDbEntities db = new SyfDbEntities())
             {
                 var avatars = db.Set<DBConnection.Avatar>();
                 avatars.Add(avatarDB);
-
-                var images = db.Set<DBConnection.ImageUrl>();
-                images.Add(imageUrl);
-
-                foreach (Tag tag in tags)
-                {
-                    var tagAvatar = db.Set<DBConnection.Tag>();
-                    tagAvatar.Add(tag);
-                }
-
-
-
-                db.SaveChanges();
-
-                var AvatarToImageUrls = db.Set<DBConnection.Avatar_To_ImageUrl>();
-                avatarToImageUrl.Avatar_Id = avatarDB.Id;
-                avatarToImageUrl.ImageUrl_Id = imageUrl.Id;
-                AvatarToImageUrls.Add(avatarToImageUrl);
-
-                foreach (Tag tag in tags)
-                {
-                    var AvatarToTag = db.Set<DBConnection.Avatar_To_Tag>();
-                    avatarToTag.Avatar_Id = avatarDB.Id;
-                    avatarToTag.Tag_Id = tag.Id;
-                    AvatarToTag.Add(avatarToTag);
-                }
                 db.SaveChanges();
             }
-
             return true;
         }
+
+        private static void AddImages(AvatarModel avatar, List<Avatar_To_ImageUrl> avatarToImageUrlDBConnect)
+        {
+            foreach (var imageurl in avatar.ImagesUrl)
+            {
+                ImageUrl imageUrl = new ImageUrl();
+                imageUrl.Name = avatar.Name;
+                imageUrl.Url = imageurl;
+
+                Avatar_To_ImageUrl avatarToImage = new Avatar_To_ImageUrl();
+                avatarToImage.ImageUrl = imageUrl;
+
+                avatarToImageUrlDBConnect.Add(avatarToImage);
+            }
+        }
+
+        private static void AddTags(AvatarModel avatar, List<Avatar_To_Tag> avatarToImageUrlDBConnect)
+        {
+            foreach (var tag in avatar.Tags)
+            {
+                Tag tagOb = new Tag();
+                tagOb.Name = tag;
+
+                Avatar_To_Tag avatarToTag = new Avatar_To_Tag();
+                avatarToTag.Tag = tagOb;
+
+                avatarToImageUrlDBConnect.Add(avatarToTag);
+            }
+        }
+
         public bool deleteAvatar(int avatarId)
          {
             using (SyfDbEntities db = new SyfDbEntities())
@@ -125,14 +121,14 @@ namespace Calculation.Avatar
                 var avatarsDBConnection = db.Set<DBConnection.Avatar>();
                 var avatarToRemove = avatarsDBConnection.First(avatar => avatar.Id == avatarId);
 
-                if(avatarToRemove.ImagesUrl_Id != 0)
-                {
-                    RemoveImages(db, avatarToRemove);
-                }
-                if (avatarToRemove.Tag_Id != 0)
-                {
-                    RemoveTags(db, avatarToRemove);
-                }
+                //if(avatarToRemove.ImagesUrl_Id != 0)
+                //{
+                //    RemoveImages(db, avatarToRemove);
+                //}
+                //if (avatarToRemove.Tag_Id != 0)
+                //{
+                //    RemoveTags(db, avatarToRemove);
+                //}
                 avatarsDBConnection.Remove(avatarToRemove);
                 db.SaveChanges();
             }

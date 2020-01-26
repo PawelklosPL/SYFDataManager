@@ -29,18 +29,40 @@ namespace Calculations.Converters
             avatar.Comment_Id = 0;
             avatar.AuthorName = avatarModel.AuthorName;
             avatar.CommentNumber = 0;
-            avatar.ImagesUrl = new string[1] { "/assets/temp/1.jpg" };
-            avatar.Tags = new string[1] { "tagi" };
+
+            GetImages(avatarModel, avatar);
+            GetTags(avatarModel, avatar);
 
             avatar.PublishDate = 0;
             if (avatarModel.SharePoints != null)
-            { 
+            {
                 avatar.SharePoints = (int)avatarModel.SharePoints;
             }
 
             return avatar;
         }
-  
+
+        private static void GetTags(DBConnection.Avatar avatarModel, AvatarModel avatar)
+        {
+            var AvatarToTagsUrl = avatarModel.Avatar_To_Tag;
+            List<string> tags = new List<string>();
+            foreach (var AvatarToTagUrl in AvatarToTagsUrl)
+            {
+                tags.Add(AvatarToTagUrl.Tag.Name);
+            }
+            avatar.Tags = tags.ToArray();
+        }
+
+        private static void GetImages(DBConnection.Avatar avatarModel, AvatarModel avatar)
+        {
+            var AvatarToImagesUrl = avatarModel.Avatar_To_ImageUrl;
+            List<string> images = new List<string>();
+            foreach (var AvatarToImageUrl in AvatarToImagesUrl)
+            {
+                images.Add(AvatarToImageUrl.ImageUrl.Url);
+            }
+            avatar.ImagesUrl = images.ToArray();
+        }
 
     }
 }
