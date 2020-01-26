@@ -118,53 +118,38 @@ namespace Calculation.Avatar
          {
             using (SyfDbEntities db = new SyfDbEntities())
             {
-                var avatarsDBConnection = db.Set<DBConnection.Avatar>();
-                var avatarToRemove = avatarsDBConnection.First(avatar => avatar.Id == avatarId);
+                var avatarsDBConnection = db.Avatars.First(element => element.Id == avatarId);
 
-                //if(avatarToRemove.ImagesUrl_Id != 0)
-                //{
-                //    RemoveImages(db, avatarToRemove);
-                //}
-                //if (avatarToRemove.Tag_Id != 0)
-                //{
-                //    RemoveTags(db, avatarToRemove);
-                //}
-                avatarsDBConnection.Remove(avatarToRemove);
+               RemoveImages(db, avatarsDBConnection);
+               db.SaveChanges();
+             
+               RemoveTags(db, avatarsDBConnection);
+               db.SaveChanges();
+
+                db.Avatars.Remove(avatarsDBConnection);
                 db.SaveChanges();
             }
             return true;
         }
         private static void RemoveTags(SyfDbEntities db, DBConnection.Avatar avatarToRemove)
         {
-            var avatarToTagsDBConnection = db.Set<DBConnection.Avatar_To_Tag>();
-            var avatarToTags = avatarToTagsDBConnection.Where(element => element.Id == avatarToRemove.Tag_Id);
+            var avatarToTags = avatarToRemove.Avatar_To_Tag;
             foreach (var avatarToTag in avatarToTags)
             {
-                int tagId = avatarToTag.Tag_Id;
-                var tagAvatarDBConnection = db.Set<DBConnection.Tag>();
-                var tag = tagAvatarDBConnection.First(element => element.Id == tagId);
-                tagAvatarDBConnection.Remove(tag);
+                Tag tag = avatarToTag.Tag;
+                db.Tags.Remove(tag);
             }
-            foreach (var avatarToTag in avatarToTags)
-            {
-                avatarToTagsDBConnection.Remove(avatarToTag);
-            }
+            db.Avatar_To_Tag.RemoveRange(avatarToTags);
         }
         private static void RemoveImages(SyfDbEntities db, DBConnection.Avatar avatarToRemove)
         {
-            var avatarToImageUrlsDBConnection = db.Set<DBConnection.Avatar_To_ImageUrl>();
-            var avatarToImageUrls = avatarToImageUrlsDBConnection.Where(imateToAvatar => imateToAvatar.Id == avatarToRemove.ImagesUrl_Id);
+            var avatarToImageUrls = avatarToRemove.Avatar_To_ImageUrl;
             foreach (var avatarToImageUrl in avatarToImageUrls)
             {
-                int imageId = avatarToImageUrl.ImageUrl_Id;
-                var imagesDBConnection = db.Set<DBConnection.ImageUrl>();
-                var image = imagesDBConnection.First(i => i.Id == imageId);
-                imagesDBConnection.Remove(image);
+                ImageUrl image = avatarToImageUrl.ImageUrl;
+                db.ImageUrls.Remove(image);
             }
-            foreach (var avatarToImageUrl in avatarToImageUrls)
-            {
-                avatarToImageUrlsDBConnection.Remove(avatarToImageUrl);
-            }
+            db.Avatar_To_ImageUrl.RemoveRange(avatarToImageUrls);
         }
     }
 }
