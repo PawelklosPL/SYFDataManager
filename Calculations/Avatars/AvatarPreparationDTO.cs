@@ -16,32 +16,17 @@ namespace Calculation.Avatar
 
             using (SyfDbEntities db = new SyfDbEntities())
             {
-                foreach(var avatar in db.Avatars)
+
+                foreach (var avatarDB in db.Avatars.ToList())
                 {
-                    AvatarModel avatarModel = new AvatarModel();
-                    avatarModel.Id = avatar.Id;
-                    avatarModel.Name = avatar.Name;
-
-                    string[] imagesUrl= new string[1];
-                    imagesUrl[0] = avatar.ImagesUrl_Id.ToString();
-                    avatarModel.ImagesUrl = new string[1] { "/assets/temp/1.jpg" };
-                     
-                    avatarModel.Description = avatar.Description;
-                    avatarModel.AuthorId = avatar.AuthorId.ToString();
-
-                    string[] tags = new string[1];
-                    tags[0] = avatar.Tag_Id.ToString();
-                    avatarModel.Tags = tags;
-
-                    if(avatar.SharePoints != null)
-                    {
-                        avatarModel.SharePoints = Convert.ToInt32(avatar.SharePoints);
-                    }
-                    avatarsList.Add(avatarModel);
+                    avatarsList.Add(AvatarConverter.convertFromModel(avatarDB));
                 }
             }
-               return avatarsList;
+
+            return avatarsList;
         }
+
+
         public AvatarModel getAvatar(int AvatarId)
         {
             AvatarModel avatar = new AvatarModel();
