@@ -10,13 +10,11 @@ namespace Calculation.Avatar
 {
     public class AvatarPreparationDTO
     {
-        public List<AvatarModel> getAvatarsList(int avatarNumber)
+        public List<AvatarModel> getAvatarsList()
         {
             List<AvatarModel> avatarsList = new List<AvatarModel>();
-
             using (SyfDbEntities db = new SyfDbEntities())
             {
-
                 foreach (var avatarDB in db.Avatars.ToList())
                 {
                     avatarsList.Add(AvatarConverter.convertFromModel(avatarDB));
@@ -30,11 +28,9 @@ namespace Calculation.Avatar
         public AvatarModel getAvatar(int AvatarId)
         {
             AvatarModel avatar = new AvatarModel();
-            DBConnection.Avatar avatarDB = new DBConnection.Avatar();
             using (SyfDbEntities db = new SyfDbEntities())
             {
-                avatarDB = db.Avatars.First(c => c.Id == AvatarId);
-                avatar = AvatarConverter.convertFromModel(avatarDB);
+                avatar = AvatarConverter.convertFromModel(db.Avatars.First(c => c.Id == AvatarId));
             }
 
             return avatar;

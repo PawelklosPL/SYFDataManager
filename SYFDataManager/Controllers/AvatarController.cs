@@ -20,7 +20,7 @@ namespace SYFDataManager.Controllers
             try
             {
                 AvatarPreparationDTO avatars = new AvatarPreparationDTO();
-                return Content(JsonConvert.SerializeObject(avatars.getAvatarsList(10)));
+                return Content(JsonConvert.SerializeObject(avatars.getAvatarsList()));
             }
             catch (Exception e)
             {
