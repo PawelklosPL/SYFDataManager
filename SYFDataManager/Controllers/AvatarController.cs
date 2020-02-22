@@ -65,9 +65,9 @@ namespace SYFDataManager.Controllers
             try
             {
                 AvatarPreparationDTO model = new AvatarPreparationDTO();
-                model.createAvatar(avatar);
+                AvatarModel createdAvatar  = model.createAvatar(avatar);
 
-                return Content(JsonConvert.SerializeObject(avatar));
+                return Content(JsonConvert.SerializeObject(createdAvatar));
             }
             catch(Exception e)
             {

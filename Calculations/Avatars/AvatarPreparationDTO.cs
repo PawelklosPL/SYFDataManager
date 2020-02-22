@@ -35,7 +35,7 @@ namespace Calculation.Avatar
 
             return avatar;
         }
-        public bool createAvatar(AvatarModel avatar)
+        public AvatarModel createAvatar(AvatarModel avatar)
         {
 
             DBConnection.Avatar avatarDB = new DBConnection.Avatar();
@@ -55,15 +55,15 @@ namespace Calculation.Avatar
             List<Avatar_To_Tag> avatarToTagDBConnect = new List<Avatar_To_Tag>();
             AddTags(avatar, avatarToTagDBConnect);
             avatarDB.Avatar_To_Tag = avatarToTagDBConnect;
-
-
+              
             using (SyfDbEntities db = new SyfDbEntities())
             {
                 var avatars = db.Set<DBConnection.Avatar>();
                 avatars.Add(avatarDB);
                 db.SaveChanges();
             }
-            return true;
+
+            return getAvatar(avatarDB.Id);
         }
 
         private static void AddImages(AvatarModel avatar, List<Avatar_To_ImageUrl> avatarToImageUrlDBConnect)
