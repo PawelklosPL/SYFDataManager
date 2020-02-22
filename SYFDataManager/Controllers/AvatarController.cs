@@ -114,6 +114,23 @@ namespace SYFDataManager.Controllers
             }
         }
 
+        // POST: Avatar/Deletes
+        [HttpPost]
+        public ActionResult Deletes(int[] avatarIds)
+        {
+            try
+            {
+                AvatarPreparationDTO model = new AvatarPreparationDTO();
+                return Content(JsonConvert.SerializeObject(model.deleteMultipleAvatar(avatarIds)));
+
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return View();
+            }
+        }
+
         // POST: Avatar/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)

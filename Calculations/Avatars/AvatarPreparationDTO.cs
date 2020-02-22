@@ -107,8 +107,28 @@ namespace Calculation.Avatar
                RemoveTags(db, avatarsDBConnection);
                db.SaveChanges();
 
-                db.Avatars.Remove(avatarsDBConnection);
-                db.SaveChanges();
+               db.Avatars.Remove(avatarsDBConnection);
+               db.SaveChanges();
+            }
+            return true;
+        }
+        public bool deleteMultipleAvatar(int[] avatarIds)
+        {
+            using (SyfDbEntities db = new SyfDbEntities())
+            {
+                foreach(int avatarId in avatarIds)
+                {
+                    var avatarsDBConnection = db.Avatars.First(element => element.Id == avatarId);
+
+                    RemoveImages(db, avatarsDBConnection);
+                    db.SaveChanges();
+
+                    RemoveTags(db, avatarsDBConnection);
+                    db.SaveChanges();
+
+                    db.Avatars.Remove(avatarsDBConnection);
+                    db.SaveChanges();
+                }
             }
             return true;
         }
