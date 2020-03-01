@@ -3,13 +3,15 @@ using Calculations.Converters;
 using DBConnection;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Text;
 
 namespace Calculation.Avatar
 {
     public class AvatarPreparationDTO
     {
+        public object EntryState { get; private set; }
+
         public List<AvatarModel> getAvatarsList()
         {
             List<AvatarModel> avatarsList = new List<AvatarModel>();
@@ -24,6 +26,44 @@ namespace Calculation.Avatar
             return avatarsList;
         }
 
+        public AvatarModel editAvatar(AvatarModel avatar2)
+        {
+
+            //AvatarModel avatar = new AvatarModel();
+            using (SyfDbEntities db = new SyfDbEntities())
+            {
+
+                var avatar = db.Avatars.First(c => c.Id == avatar2.Id);
+
+                avatar.AuthorName = avatar2.AuthorName;
+                avatar.Description = avatar2.Description;
+                avatar.FolderName = avatar2.FolderName;
+                avatar.Name = avatar2.Name;
+                avatar.SharePoints = avatar2.SharePoints;
+
+
+                RemoveImages(db, avatar);
+                db.SaveChanges();
+
+                RemoveTags(db, avatar);
+                db.SaveChanges();
+
+                List<Avatar_To_ImageUrl> avatarToImageUrlDBConnect = new List<Avatar_To_ImageUrl>();
+                AddImages(avatar2, avatarToImageUrlDBConnect);
+                avatar.Avatar_To_ImageUrl = avatarToImageUrlDBConnect;
+
+
+                List<Avatar_To_Tag> avatarToTagDBConnect = new List<Avatar_To_Tag>();
+                AddTags(avatar2, avatarToTagDBConnect);
+                avatar.Avatar_To_Tag = avatarToTagDBConnect;
+
+
+                db.Entry(avatar).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+
+            return getAvatar(avatar2.Id);
+        }
 
         public AvatarModel getAvatar(int AvatarId)
         {
@@ -65,6 +105,7 @@ namespace Calculation.Avatar
 
             return getAvatar(avatarDB.Id);
         }
+
 
         private static void AddImages(AvatarModel avatar, List<Avatar_To_ImageUrl> avatarToImageUrlDBConnect)
         {

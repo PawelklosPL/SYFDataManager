@@ -44,20 +44,6 @@ namespace SYFDataManager.Controllers
             }
         }
 
-        // GET: Avatar/Create
-        public ActionResult Create()
-        {
-            try
-            {
-                return View();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-                return View();
-            }
-        }
-
         // POST: Avatar/Create
         [HttpPost]
         public ActionResult Create(AvatarModel avatar)
@@ -76,24 +62,20 @@ namespace SYFDataManager.Controllers
             }
         }
 
-        // GET: Avatar/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
         // POST: Avatar/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(AvatarModel avatar)
         {
             try
             {
-                // TODO: Add update logic here
+                AvatarPreparationDTO model = new AvatarPreparationDTO();
+                AvatarModel createdAvatar = model.editAvatar(avatar);
 
-                return RedirectToAction("Index");
+                return Content(JsonConvert.SerializeObject(createdAvatar));
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e.ToString());
                 return View();
             }
         }
@@ -127,22 +109,6 @@ namespace SYFDataManager.Controllers
             catch(Exception e)
             {
                 Console.WriteLine(e.ToString());
-                return View();
-            }
-        }
-
-        // POST: Avatar/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
                 return View();
             }
         }
