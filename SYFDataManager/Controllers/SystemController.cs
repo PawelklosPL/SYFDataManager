@@ -12,7 +12,7 @@ namespace SYFDataManager.Controllers
         // GET: System/Version
         public ActionResult Version()
         {
-            return Content(JsonConvert.SerializeObject("0.1.2020.03.01"));
+            return Content(JsonConvert.SerializeObject("0.1.2020.03.08"));
         }
 
     }

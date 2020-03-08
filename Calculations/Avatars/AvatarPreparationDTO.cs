@@ -26,43 +26,66 @@ namespace Calculation.Avatar
             return avatarsList;
         }
 
-        public AvatarModel editAvatar(AvatarModel avatar2)
+        public AvatarModel editAvatar(AvatarModel avatar)
         {
 
             //AvatarModel avatar = new AvatarModel();
             using (SyfDbEntities db = new SyfDbEntities())
             {
 
-                var avatar = db.Avatars.First(c => c.Id == avatar2.Id);
+                var avataFromDB = db.Avatars.First(c => c.Id == avatar.Id);
 
-                avatar.AuthorName = avatar2.AuthorName;
-                avatar.Description = avatar2.Description;
-                avatar.FolderName = avatar2.FolderName;
-                avatar.Name = avatar2.Name;
-                avatar.SharePoints = avatar2.SharePoints;
+                avataFromDB.AuthorName = avatar.AuthorName;
+                avataFromDB.Description = avatar.Description;
+                avataFromDB.FolderName = avatar.FolderName;
+                avataFromDB.Name = avatar.Name;
+                avataFromDB.SharePoints = avatar.SharePoints;
 
 
-                RemoveImages(db, avatar);
+                RemoveImages(db, avataFromDB);
                 db.SaveChanges();
 
-                RemoveTags(db, avatar);
+                RemoveTags(db, avataFromDB);
                 db.SaveChanges();
 
                 List<Avatar_To_ImageUrl> avatarToImageUrlDBConnect = new List<Avatar_To_ImageUrl>();
-                AddImages(avatar2, avatarToImageUrlDBConnect);
-                avatar.Avatar_To_ImageUrl = avatarToImageUrlDBConnect;
+                AddImages(avatar, avatarToImageUrlDBConnect);
+                avataFromDB.Avatar_To_ImageUrl = avatarToImageUrlDBConnect;
 
 
                 List<Avatar_To_Tag> avatarToTagDBConnect = new List<Avatar_To_Tag>();
-                AddTags(avatar2, avatarToTagDBConnect);
-                avatar.Avatar_To_Tag = avatarToTagDBConnect;
+                AddTags(avatar, avatarToTagDBConnect);
+                avataFromDB.Avatar_To_Tag = avatarToTagDBConnect;
 
 
-                db.Entry(avatar).State = EntityState.Modified;
+                db.Entry(avataFromDB).State = EntityState.Modified;
                 db.SaveChanges();
             }
 
-            return getAvatar(avatar2.Id);
+            return getAvatar(avatar.Id);
+        }
+        private void editImages(SyfDbEntities db, DBConnection.Avatar avatarToRemove, AvatarModel avatar, List<Avatar_To_ImageUrl> avatarToImageUrlDBConnect)
+        {
+            var avatarToImageUrls = avatarToRemove.Avatar_To_ImageUrl;
+            foreach (var avatarToImageUrl in avatarToImageUrls)
+            {
+                ImageUrl image = avatarToImageUrl.ImageUrl;
+                db.ImageUrls.Remove(image);
+            }
+            db.Avatar_To_ImageUrl.RemoveRange(avatarToImageUrls);
+
+
+            foreach (var imageurl in avatar.ImagesUrl)
+            {
+                ImageUrl imageUrl = new ImageUrl();
+                imageUrl.Name = avatar.Name;
+                imageUrl.Url = imageurl;
+
+                Avatar_To_ImageUrl avatarToImage = new Avatar_To_ImageUrl();
+                avatarToImage.ImageUrl = imageUrl;
+
+                avatarToImageUrlDBConnect.Add(avatarToImage);
+            }
         }
 
         public AvatarModel getAvatar(int AvatarId)
